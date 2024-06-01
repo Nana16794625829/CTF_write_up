@@ -1,9 +1,9 @@
 # NahamCon CTF 2024 - Copypasta   
  --- 
 某次打CTF的warm up challenge，只有這段文字敘述   
-![image.png](files\image.png)    
+![image.png](files/image.png)    
 題目名稱的`Copypasta` 具有複製文的意思：   
-![image.png](files\image_o.png)    
+![image.png](files/image_o.png)    
    
 將文字複製貼上之後發現flag藏在段落中：   
    
