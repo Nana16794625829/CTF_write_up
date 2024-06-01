@@ -1,5 +1,17 @@
 # TJCTF 2024 - web/templater   
  --- 
+   
+如果輸入 `{{title}}` 當作template variable，就會得到title這個key相對應的value(my website)作為return值   
+![image.png](files/image.png)    
+![image.png](files/image_5.png)    
+從code中找到flag存在哪裡，但是根據後面的code可以發現，直接輸入{{flag}}當作template variable會得到 `No flag for you!` 的return值   
+![image.png](files/image_c.png)    
+自己新增一個key:value pair `test:{{{{flag}}}}`    
+(不能用 test:{{flag}} 的原因，是因為當他return {{flag}} 時他會解析一次，如此一來又會被filter抓到flag被暴露出去，所以會失敗)   
+(然而雖然code可以重複解析key value pair，但是並不會重複進入filter檢查 → 見 code `template\_route()` 和 `template(s)` 這兩個function)   
+![image.png](files/image_q.png)    
+![image.png](files/image_17.png)    
+   
 > code   
 
 ```
@@ -115,15 +127,3 @@ if __name__ == '__main__':
 
 
 ```
-   
-如果輸入 `{{title}}` 當作template variable，就會得到title這個key相對應的value(my website)作為return值   
-![image.png](files\image.png)    
-![image.png](files\image_5.png)    
-從code中找到flag存在哪裡，但是根據後面的code可以發現，直接輸入{{flag}}當作template variable會得到 `No flag for you!` 的return值   
-![image.png](files\image_c.png)    
-自己新增一個key:value pair `test:{{{{flag}}}}`    
-(不能用 test:{{flag}} 的原因，是因為當他return {{flag}} 時他會解析一次，如此一來又會被filter抓到flag被暴露出去，所以會失敗)   
-(然而雖然code可以重複解析key value pair，但是並不會重複進入filter檢查 → 見 code `template\_route()` 和 `template(s)` 這兩個function)   
-![image.png](files\image_q.png)    
-![image.png](files\image_17.png)    
-   
